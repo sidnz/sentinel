@@ -28,6 +28,7 @@ Sentinel scans MCP server configurations, live endpoints, and Docker containers 
 - 🎨 **4 output formats** — terminal (Rich), HTML, JSON, SARIF 2.1
 - ⚙️ **GitHub Action** — drop-in CI integration with SARIF upload support
 - 🚦 **Fail-on threshold** — block PRs on HIGH/CRITICAL findings
+- 👁️ **Watch mode** — continuous monitoring with configurable interval and change detection
 
 ---
 
@@ -61,6 +62,9 @@ sentinel container my-mcp-image:latest
 
 # Run all scanners in one pass
 sentinel scan --config mcp.json --endpoint https://mcp.example.com --container my-image:latest
+
+# Continuously monitor — re-scan every 60s, alert on change
+sentinel watch --config mcp.json --endpoint https://mcp.example.com --interval 60 --on-change
 
 # Output as SARIF for GitHub Code Scanning
 sentinel config mcp.json --format sarif --output sentinel.sarif.json
